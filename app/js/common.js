@@ -23,7 +23,7 @@ $(function() {
         useTransition: false,
         animate: true,
         animTime: 1000
-    });
+   });
 
 // Main menu
     $("#my-menu").mmenu({
