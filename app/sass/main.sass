@@ -1,0 +1,240 @@
+@import "reset"
+@import "fonts"
+@import "libs"
+@import "vars"
+
+*::-webkit-input-placeholder
+	color: #666
+	opacity: 1
+
+*:-moz-placeholder
+	color: #666
+	opacity: 1
+
+*::-moz-placeholder
+	color: #666
+	opacity: 1
+
+*:-ms-input-placeholder
+	color: #666
+	opacity: 1
+
+body input:focus:required:invalid,
+body textarea:focus:required:invalid
+	color: #666
+body input:required:valid,
+body textarea:required:valid
+	color: #666
+
+html, body
+	height: 100%
+	background-color: $dark
+	
+ 
+body
+	font-size: 16px
+	min-width: 320px
+	position: relative
+	line-height: 1.75
+	font-family: $default-font
+	overflow-x: hidden
+	opacity: 1
+	color: black
+	&.ishome
+		.site-header
+			min-height: 700px
+			height: 100vh
+			background-color: $dark
+			color: #fff
+			.top-line
+				padding-top: 40px
+				position: absolute
+				width: 100%
+				z-index: 1
+				
+.h1, .h2, .h3, .h4, .h5, .h6
+	line-height: 1.4
+	text-transform: uppercase
+	
+.button
+	display: inline-block
+	border: none
+	color: #fff
+	text-decoration: none
+	background-color: $accent
+	padding: 15px 45px
+	font-size: 13px
+	text-transform: uppercase
+	font-weight: 600
+	letter-spacing: 3px
+	border-radius: 2px
+	text-align: center
+	position: relative
+	outline: none
+	transition: background-color .1s ease
+	&::after
+		transition: background-color .2s ease
+		position: absolute
+		content: ''
+		height: 4px
+		bottom: 0
+		width: 100%
+		background-color: darken($accent, 50%)
+		opacity: .18
+		border-bottom-left-radius: 2px
+		border-bottom-right-radius: 2px
+		left: 0
+	&:focus, &:hover
+		text-decoration: none
+		color: #fff
+	&:hover
+		background-color: lighten($accent, 5%)
+		&::after
+			opacity: .22
+	&:active
+		background-color: darken($accent, 5%)
+		&::after
+			opacity: .32
+			
+.img-responsive
+	display: block
+	max-width: 100%
+	height: auto
+
+@mixin opacity($opacity)
+	opacity: $opacity / 100
+	filter: alpha(opacify=$opacity)
+.preloader
+	position: fixed
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+	z-index: 100
+	background-color: $dark
+	.pulse
+		position: relative
+		left: 50%
+		top: 50vh
+		margin:
+			left: -40px
+			top: -40px
+		&::before, &::after
+			content: ''
+			border: 5px solid #323232
+			width: 80px
+			height: 80px
+			border-radius: 500px
+			position: absolute
+		&::before
+			animation: pulse-outer .8s ease-in infinite
+		&::after
+			animation: pulse-inner .8s linear infinite
+@keyframes pulse-outer
+	0%
+		@include opacity(100)
+	50%
+		@include opacity(50)
+	100%
+		@include opacity(0)
+@keyframes pulse-inner
+	0%
+		@include opacity(0)
+		transform: scale(0)
+	100%
+		@include opacity(100)
+		transform: scale(1)
+
+.logo
+	margin-left: 45px
+	color: #fff
+	font-weight: 600
+	font-size: 30px
+	display: block
+	&:hover
+		color: #fff
+		text-decoration: none
+	img
+		width: 100px
+		height: auto
+	span
+		position: absolute
+		top: 40px
+		z-index: 100
+		
+.phone
+	position: absolute
+	right: 85px
+	top: 44px
+	font-family: firasans, sans-serif
+	font-size: 24px
+	white-space: nowrap
+	.fa
+		color: #555
+		font-size: 26px
+		margin-right: 3px
+
+section, header
+	position: relative
+	background-size: cover
+	background-position: center
+	
+section
+	background-color: #fff
+	
+.hamburger
+	position: absolute
+	right: 0px
+	top: 34px
+	.hamburger-inner, .hamburger-inner::after, .hamburger-inner::before
+		border-radius: 0px
+		width: 34px
+		height: 2px
+		background-color: #fff
+	
+.to-top
+	position: fixed
+	width: 50px
+	height: 50px
+	right: -100px
+	bottom: 25px
+	background-color: #e0e0e0
+	z-index: 12
+	border-radius: 10em
+	color: #666
+	font-size: 26px
+	transition: all .3s ease
+	opacity: .5
+	text-align: center
+	line-height: 50px
+	&:hover
+		color: #fff
+		background-color: $accent
+		opacity: 1
+	&.active
+		right: 25px
+
+.sticky-panel
+	margin: 0
+	span
+		color: #fff
+		background-color: #fff
+		position: absolute
+		left: 40px
+		top: 40px
+		width: 100%
+		z-index: 2
+.sticky-panel
+	background-color: #fff
+	opacity: 0
+	&.active
+		opacity: 1
+		
+#my-content
+	height: 2000px
+
+
+
+	
+
+@import "media" // Всегда в конце
