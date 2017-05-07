@@ -1,10 +1,5 @@
 $(function() {
 
-//preloader
-    $(window).on('load', function () {
-       $('.preloader').delay(2000).fadeOut('slow')
-    });
-
 //to top arrow
 	$(window).scroll(function() {
         if ($(this).scrollTop() > $(this).height()) {
@@ -44,8 +39,57 @@ $(function() {
         $('.hamburger').removeClass('is-active');
     });
 
+// Caroucel services
+    $('.carousel-services').on('initialized.owl.carousel', function () {
+        setTimeout(function () {
+            carouselService();
+        }, 100);
+    })
+    $('.carousel-services').owlCarousel({
+        loop: true,
+        nav: true,
+        smartSpeed: 700,
+        dots: false,
+        navText: ['<i class="fa fa-angle-double-left">','<i class="fa fa-angle-double-right">'],
+        responsiveClass: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            800: {
+                items: 2
+            },
+            1100: {
+                items: 3
+            }
+        }
+    });
+
+    function carouselService() {
+        $('.carousel-services-item').each(function() {
+            var ths = $(this);
+            var thsh = ths.find('.carousel-services-content').outerHeight();
+            ths.find('.carousel-services-image').css('min-height', thsh);
+
+        });
+    }carouselService();
 
 
+    $('.carousel-services-composition .h3').each(function() {
+        var ths = $(this);
+        ths.html(ths.html().replace(/(\S+)\s*$/, '<span>$1</span>'));
+    });
+
+//preloader
+    $(window).on('load', function() {
+        $('.preloader').delay(1000).fadeOut('slow');
+    });
+
+
+    function onResize() {
+        $('.carousel-services-content').equalHeights();
+    }onResize();
+    window.onresize = function () {onResize()};
 
 
 
