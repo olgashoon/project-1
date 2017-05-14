@@ -9,13 +9,24 @@
 			font-size: 40px
 	.header-contacts
 		font-size: 13px
-		
-	.carousel-services-item
+	
+	.s-services .owl-carousel .owl-item .carousel-services-item
 		flex-direction: column
+		
+	.s
+		&-king, &-reviews, &-partners
+			padding: 8% 0
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px)
- /**/
+	.s-call
+		&::before
+			width: 100%
+		.callback
+			padding: 0
+	
+	.main-footer .footer-column.footer-addr p.footer-phone
+		font-size: 24px
 
 
 /* Small Devices, Tablets */
@@ -24,6 +35,21 @@
 		p
 			span
 				font-size: 14px
+				
+	.button
+		padding: 12px 36px
+		
+	.quotes
+		display: none
+	
+	.partners
+		.owl-nav
+			> div
+				&.owl-prev
+					left: 0
+				&.owl-next
+					right: 0
+				
 
 
 /* Extra Small Devices, Phones */
@@ -41,8 +67,12 @@
 		.button
 			padding: 14px 40px
 			margin-top: 10px
-	.phone
-		top: 80px
+	.top-line
+		.phone
+			top: 90px
+			
+	.fotorama__nav
+		z-index: -1
 
 /* Custom, iPhone Retina */
 @media only screen and (max-width : 320px)

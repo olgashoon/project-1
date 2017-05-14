@@ -1,5 +1,7 @@
 $(function() {
 
+
+
 //to top arrow
 	$(window).scroll(function() {
         if ($(this).scrollTop() > $(this).height()) {
@@ -80,17 +82,83 @@ $(function() {
         ths.html(ths.html().replace(/(\S+)\s*$/, '<span>$1</span>'));
     });
 
-//preloader
-    $(window).on('load', function() {
-        $('.preloader').delay(1000).fadeOut('slow');
+    $('section .h2').each(function() {
+        var ths = $(this);
+        ths.html(ths.html().replace(/^(\S+)/, '<span>$1</span>'));
+    });
+
+    $('.logo, .mm-title').each(function() {
+        var ths = $(this);
+        ths.html(ths.html().replace(/(\w)/, '<span>$1</span>'));
     });
 
 
+// Caroucel reviews
+    $('.reviews').owlCarousel({
+        loop: true,
+        items: 1,
+        nav: false,
+        smartSpeed: 700,
+        autoHeight: true
+    });
+
+// Caroucel partners
+    $('.partners').owlCarousel({
+        loop: true,
+        items: 4,
+        nav: true,
+        dots: false,
+        smartSpeed: 700,
+        navText: ['<i class="fa fa-angle-left">','<i class="fa fa-angle-right">'],
+        responsiveClass: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 2
+            },
+            992: {
+                items: 3
+            },
+            1200: {
+                items: 4
+            }
+        }
+    });
+
+//Styling selects
+    $('select').selectize({
+        create: true
+    });
+
+//E-mail Ajax Send
+    $("form.callback").submit(function() { //Change
+        var th = $(this);
+        $.ajax({
+            type: "POST",
+            url: "mail.php", //Change
+            data: th.serialize()
+        }).done(function() {
+            $(th).find('.success').addClass('active').css('display', 'flex').hide().fadeIn()
+            setTimeout(function() {
+                // Done Functions
+                $(th).find('.success').removeClass('active').fadeOut()
+                th.trigger("reset");
+            }, 3000);
+        });
+        return false;
+    });
+
+//Resize window
     function onResize() {
         $('.carousel-services-content').equalHeights();
     }onResize();
     window.onresize = function () {onResize()};
 
+});
 
-
+//preloader
+$(window).on('load', function() {
+    $('.preloader').delay(1000).fadeOut('slow');
 });
